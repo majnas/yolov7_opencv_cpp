@@ -9,7 +9,7 @@ cd yolov7_opencv_cpp/yolov7
 
 # Install dependencies.
 pip install -r requirements.txt
-# pip install onnx
+pip install onnx
 ```
 
 
