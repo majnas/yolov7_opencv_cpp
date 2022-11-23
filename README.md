@@ -41,6 +41,8 @@ Or place use your own custom yolov7 weight in following folder.
 
 
 * Moving reparameterization_yolov7.py to yolov7 directory.
+* Make a copy of yolov7/cfg/deploy/yolov7.yml and rename to yolov7_custom_weight.yaml then change number of class in line number 2 (nc=1). For my custom weight there is only one class (face).
+
 ```shell
 mv reparameterization_yolov7.py ./yolov7/reparameterization_yolov7.py
 ```
@@ -51,7 +53,7 @@ cd ./yolov7
 python reparameterization_yolov7.py
 ``` 
 
-This will create another model (best.pt) here cfg/deploy/best.pt, which is reparameterized version of custom model.
+This will create another model (custom_weight_reparameterized.pt) in cfg/deploy/custom_weight_reparameterized.pt, which is reparameterized version of custom weight.
 
 ```shell
 └── yolov7
@@ -59,6 +61,7 @@ This will create another model (best.pt) here cfg/deploy/best.pt, which is repar
     │   ├── baseline
     │   ├── deploy
     │   │   ├── custom_weight_reparameterized.pt   <------------- Reparameterized custom weight 
+    │   │   ├── yolov7_custom_weight.yaml    
     │   │   ├── yolov7-d6.yaml
     │   │   ├── yolov7-e6e.yaml
     │   │   ├── yolov7-e6.yaml
@@ -83,7 +86,7 @@ This will create another model (best.pt) here cfg/deploy/best.pt, which is repar
 To export ONNX we have to checkout to u5 branch, and export reparameterized version of custom weight to onnx and torchscript, to do this
 ```shell
 cd ./yolov7
-git checkout u5
+  git checkout u5
 python export.py --weights cfg/deploy/custom_weight_reparameterized.pt --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640
 ```
 No we will have onnx and tochscript version of out base best.pt
