@@ -17,7 +17,7 @@ pip install -r requirements.txt
 Download my custom yolov7 face detection using this cmd 
 ```shell
 cd yolov7_opencv_cpp/yolov7/cfg/training/
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1INiC_M_ttd8xMpZ9CuSA1FTqUxZT4e1y' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1INiC_M_ttd8xMpZ9CuSA1FTqUxZT4e1y" -O best.pt && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1INiC_M_ttd8xMpZ9CuSA1FTqUxZT4e1y' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1INiC_M_ttd8xMpZ9CuSA1FTqUxZT4e1y" -O custom_weight.pt && rm -rf /tmp/cookies.txt
 ```
 
 Or place use your own custom yolov7 weight in following folder.
@@ -28,7 +28,7 @@ Or place use your own custom yolov7 weight in following folder.
     │   ├── baseline
     │   ├── deploy
     │   └── training
-    │       ├── best.pt           <----- Place the custom weight here
+    │       ├── custom_weight.pt           <----- Place the custom weight here
     │       ├── yolov7-d6.yaml
     │       ├── yolov7-e6e.yaml
     │       ├── yolov7-e6.yaml
@@ -58,7 +58,7 @@ This will create another model (best.pt) here cfg/deploy/best.pt, which is repar
     ├── cfg
     │   ├── baseline
     │   ├── deploy
-    │   │   ├── best.pt             <------------- Reparameterized custom weight 
+    │   │   ├── custom_weight_reparameterized.pt   <------------- Reparameterized custom weight 
     │   │   ├── yolov7-d6.yaml
     │   │   ├── yolov7-e6e.yaml
     │   │   ├── yolov7-e6.yaml
@@ -68,7 +68,7 @@ This will create another model (best.pt) here cfg/deploy/best.pt, which is repar
     │   │   ├── yolov7x.yaml
     │   │   └── yolov7.yaml
     │   └── training
-    │       ├── best.pt              <------------- Custom weight
+    │       ├── custom_weight.pt                  <------------- Custom weight
     │       ├── yolov7-d6.yaml
     │       ├── yolov7-e6e.yaml
     │       ├── yolov7-e6.yaml
@@ -84,18 +84,18 @@ To export ONNX we have to checkout to u5 branch, and export reparameterized vers
 ```shell
 cd ./yolov7
 git checkout u5
-python export.py --weights cfg/deploy/best.pt --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640
+python export.py --weights cfg/deploy/custom_weight_reparameterized.pt --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640
 ```
 No we will have onnx and tochscript version of out base best.pt
 ```shell
 └── yolov7
     ├── cfg
     │   ├── deploy
-    │   │   ├── best.onnx           <------------- onnx version
-    │   │   ├── best.pt             <------------- Reparameterized custom weight
-    │   │   └── best.torchscript    <------------- torchscript version version
+    │   │   ├── custom_weight_reparameterized.onnx           <------------- onnx version
+    │   │   ├── custom_weight_reparameterized.pt             <------------- Reparameterized custom weight
+    │   │   └── custom_weight_reparameterized.torchscript    <------------- torchscript version version
     │   └── training
-    │       └── best.pt             <------------- Custom weight
+    │       └── custom_weight.pt             <------------- Custom weight
 
 ```
 
