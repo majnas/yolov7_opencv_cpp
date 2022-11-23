@@ -40,9 +40,63 @@ Or place use your own custom yolov7 weight in following folder.
 ```
 
 
-# Export to ONNX.
-cd ..
-python export.py --weights models/YOLOv5s.pt --include onnx
+* Moving reparameterization_yolov7.py to yolov7 directory.
+```shell
+mv reparameterization_yolov7.py ./yolov7/reparameterization_yolov7.py
+```
+
+### Reparameterization of model
+```shell
+cd ./yolov7
+python reparameterization_yolov7.py
+``` 
+
+This will create another model (best.pt) here cfg/deploy/best.pt, which is reparameterized version of custom model.
+
+```shell
+└── yolov7
+    ├── cfg
+    │   ├── baseline
+    │   ├── deploy
+    │   │   ├── best.pt             <------------- Reparameterized custom weight 
+    │   │   ├── yolov7-d6.yaml
+    │   │   ├── yolov7-e6e.yaml
+    │   │   ├── yolov7-e6.yaml
+    │   │   ├── yolov7-tiny-silu.yaml
+    │   │   ├── yolov7-tiny.yaml
+    │   │   ├── yolov7-w6.yaml
+    │   │   ├── yolov7x.yaml
+    │   │   └── yolov7.yaml
+    │   └── training
+    │       ├── best.pt              <------------- Custom weight
+    │       ├── yolov7-d6.yaml
+    │       ├── yolov7-e6e.yaml
+    │       ├── yolov7-e6.yaml
+    │       ├── yolov7-tiny.yaml
+    │       ├── yolov7-w6.yaml
+    │       ├── yolov7x.yaml
+    │       └── yolov7.yaml
+
+```
+
+# Export to ONNX
+To export ONNX we have to checkout to u5 branch, and export reparameterized version of custom weight to onnx and torchscript, to do this
+```shell
+cd ./yolov7
+git checkout u5
+python export.py --weights cfg/deploy/best.pt --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640
+```
+No we will have onnx and tochscript version of out base best.pt
+```shell
+└── yolov7
+    ├── cfg
+    │   ├── deploy
+    │   │   ├── best.onnx           <------------- onnx version
+    │   │   ├── best.pt             <------------- Reparameterized custom weight
+    │   │   └── best.torchscript    <------------- torchscript version version
+    │   └── training
+    │       └── best.pt             <------------- Custom weight
+
 ```
 
 # To compile and run cpp version
