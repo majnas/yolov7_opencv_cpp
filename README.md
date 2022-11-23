@@ -109,7 +109,7 @@ No we will have onnx and tochscript version of out base best.pt
     cd build
     cmake ..
     make     
-    ./app
+    ./app "../../data/me.jpeg" "../../yolov7/cfg/deploy/custom_weight_reparameterized.onnx" 640 640
 ```
 
 <!-- <div align="center">
