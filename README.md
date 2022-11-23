@@ -89,7 +89,7 @@ cd ./yolov7
   git checkout u5
 python export.py --weights cfg/deploy/custom_weight_reparameterized.pt --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 640 640
 ```
-No we will have onnx and tochscript version of out base best.pt
+No we will have onnx and tochscript version of our custom_weight.pt
 ```shell
 └── yolov7
     ├── cfg
