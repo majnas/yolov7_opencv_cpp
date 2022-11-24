@@ -42,8 +42,9 @@ Or place use your own custom yolov7 weight in following folder.
 
 * Moving reparameterization_yolov7.py to yolov7 directory.
 * Make a copy of yolov7/cfg/deploy/yolov7.yml and rename to yolov7_custom_weight.yaml then change number of class in line number 2 (nc=1). For my custom weight there is only one class (face).
-
 ```shell
+mv cfg/deploy/yolov7.yml cfg/deploy/yolov7_custom_weight.yaml
+# Set nc in line 2 => nc=1 in my case which I have only one class 
 mv reparameterization_yolov7.py ./yolov7/reparameterization_yolov7.py
 ```
 
@@ -112,9 +113,9 @@ No we will have onnx and tochscript version of our custom_weight.pt
     ./app "../../data/me.jpeg" "../../yolov7/cfg/deploy/custom_weight_reparameterized.onnx" 640 640
 ```
 
-<!-- <div align="center">
+<div align="center">
   <img src="./data/me_cpp_pred.png" height="500">
 </div>
 <p align="center">
-  Figure 2: cpp prediction for me.png
-</p> -->
+  Figure 1: cpp prediction for me.png
+</p>
