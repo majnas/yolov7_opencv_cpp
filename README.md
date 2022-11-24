@@ -2,7 +2,7 @@
 # yolov7_opencv_cpp
 Object Detection using YOLOv7 and OpenCV DNN C++
 
-
+### Get repo and install dependences
 ```bash
 git clone --recursive https://github.com/majnas/yolov7_opencv_cpp.git
 cd yolov7_opencv_cpp/yolov7
@@ -13,7 +13,7 @@ pip install onnx
 ```
 
 
-#### Prepare custom weight
+### Prepare custom weight
 Download my custom yolov7 face detection using this cmd 
 ```shell
 cd yolov7_opencv_cpp/yolov7/cfg/training/
@@ -83,7 +83,7 @@ This will create another model (custom_weight_reparameterized.pt) in cfg/deploy/
 
 ```
 
-# Export to ONNX
+### Export to ONNX
 To export ONNX we have to checkout to u5 branch, and export reparameterized version of custom weight to onnx and torchscript, to do this
 ```shell
 cd ./yolov7
@@ -103,7 +103,7 @@ No we will have onnx and tochscript version of our custom_weight.pt
 
 ```
 
-# To compile and run cpp version
+### To compile and run cpp version
 ```bash
     cd cpp
     mkdir build
