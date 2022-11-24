@@ -53,6 +53,7 @@ mv reparameterization_yolov7.py ./yolov7/reparameterization_yolov7.py
 cd ./yolov7
 python reparameterization_yolov7.py
 ``` 
+> :warning: **If you are using different version of yolov7 (yolov7x, yolov7-tiny, ...) use different reparameterizatioin script from [here](https://github.com/WongKinYiu/yolov7/blob/main/tools/reparameterization.ipynb) **: Be very careful here!
 
 This will create another model (custom_weight_reparameterized.pt) in cfg/deploy/custom_weight_reparameterized.pt, which is reparameterized version of custom weight.
 
