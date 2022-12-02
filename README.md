@@ -147,5 +147,5 @@ CMake Error at CMakeLists.txt:7 (find_package):
   <img src="./data/me_cpp_pred.png" height="500">
 </div>
 <p align="center">
-  Figure 1: cpp prediction for me.png
+  Figure 1: cpp prediction for me_cpp_pred.png
 </p>
